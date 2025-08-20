@@ -3,15 +3,20 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import StrOutputParser
 from langchain import LLMChain
+from dotenv import load_dotenv
 import os
 
 # ==============================
 # Setup
 # ==============================
-os.environ["OPENAI_API_KEY"] = "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"
+# os.environ["OPENAI_API_KEY"] = "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"
+
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
 
 # Initialize LLM (OpenRouter)
 llm = ChatOpenAI(
+     openai_api_key=api_key,
     openai_api_base="https://openrouter.ai/api/v1",
     model="openai/gpt-oss-20b:free",
     temperature=0.7,  # bit higher for funnier roasts
